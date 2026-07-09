@@ -1,61 +1,37 @@
-# CodeIgniter 4 Framework
+1. Siapkan server lokal
+Pastikan sudah install xampp untuk php dan mysl
+kemudian nyalakan APache dan MySQL dari control panelnya
 
-## What is CodeIgniter?
+2.Buka folder Project Permintaan_barang
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+composer install
+kemudian download database yang ada di github kemudian dan simpan di dalam folder
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+selanjutnya cek .env untuk sesuai dengan MySQL dan database server setelah itu jalankan php spark serve
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+http://localhost:8000
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+id user : admin
+password :password
+ id karyawan : budi
+ password : password
 
-## Important Change with index.php
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Setelah login sebagai admin dan akan masuk ke dashboard admin
+yang pertama dilakukan oleh admin adalah di dashboard di edit karyawan yaitu membuat user karyawan baru ,saat ada karyawan baru setelah sudah di buat usernya karyawan sudah boleh di login
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+kemudian admin akan menambah stok barang  kantor ada tiga yang di simpan nama barang, jumlah stok, dahulu dan memberikan batas pengajuan supaya mengurangi kecurangan dalam penggunaan barang, atau membatasi meminta barang yang sama berkali kali dalam waktu singkat, kalau nilai diisi nol ,artinya barang tidak ada batas untuk pengajuan.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+#PENGECEKAN PERMINTAAN
+Admin akan mengecek permintaan dari hasil pengajuan dari karyawan untuk mevalidasi pengjuan jika permintaan sesuai, jika tidak admin akan menolaknya.
 
-## Repository Management
+#KARYAWAN
+Karyawan akan login sebagai karyawan
+id: budi
+password: password
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+Ketika sudah login karyawan akan masuk ke dashboard karyawan sendiri,
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+kemudian karyawan akan melakukan pengajuan permintaan barang ke admin, sebelum pengajuan sistem akan mengecek dahulu bahwa karyawan ini sudah pernah melakukan pengajuan belum dan menghitung kapan karyawan boleh mengajukan lagi, dan sistem akan otomatis mengecek stok untuk apakah jumlah yang diminta karyawan masih tersedia di stok, kalau jumlah yang diminta lebih besar dari stok yang ada, maka tidak akan bisa melakukan pengajuan.
 
-## Contributing
-
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 8.2 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+jika sudah melakukan pengajuan karyawan bisa melihat ke dashboard status permintaan, disitu akan melihat status pengajuannya sudah di proses oleh admin atau belum.
